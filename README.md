@@ -50,7 +50,7 @@ As a minimum, you should understand that in test mode, Meteor eagerly loads all 
 - This README does not cover the use of `meteor test --full-app`.
 - I have not changed any of the code in the app itself, just added some tests and altered one: you should note that the original app already has a test (in `imports/api/tasks.tests.js`). I have made three changes to this:
 
-   1. Moved it into `imports/a-unit/server/tasks.tests.js`. The    use of `a-unit` is explained later in [*Structure*]   (#structure).
+   1. Moved it into `imports/a-unit/server/tasks.tests.js`. The    use of `a-unit` is explained later in [*Structure*](#structure).
    1. The `import { Tasks } from './tasks.js'` has been changed    to `import { Tasks } from '/imports/api/tasks.js'` reflecting    its move into a different folder.
    1. The `import { assert } from 'meteor/practicalmeteor:chai'` has been changed to `import { assert } from 'chai'`, as I am using the native npm `chai` package.
 
@@ -66,6 +66,7 @@ The following Meteor package has been explicitly added to enable testing:
 ### npm packages
 
 - `chai 4.1.2`
+- `mocha 5.0.5`
 
 The native npm package works great out of the box. There's no need for a Meteor wrapper package.
 
@@ -108,7 +109,7 @@ The native npm package works great out of the box. There's no need for a Meteor 
     └── main.js
 ```
 
-All test code lives under `imports`. Unit tests live in `imports/a-unit` and integration tests in `imports/b-integration`. Test are further categorised by `client`, `server` or (potentially) `both`.
+All test code lives under `imports`. Unit tests live in `imports/a-unit` and integration tests in `imports/b-integration`. Tests are further categorised by `client`, `server` or (potentially) `both`.
 
 Server tests always run first - which is good, because it allows us to provision *fixtures* which may be needed later on (like creating a test user). Note that, in test mode, Meteor gives us a brand new (empty) database to work with. Anything we need in there, we must add at test runtime.
 
@@ -228,10 +229,10 @@ There is an interaction between `AUTO_EXIT=1` and `--once`:
    => Your application is crashing. Waiting for file change.
    ```
 - `--once`: The runtime is built and tested once, but the test process does not exit. The meteor filewatcher does not re-run tests, even if files are changed.
-- [neither are used]: The runtime is built and tested, but the test process does not exit. The meteor filewatcher continues to run, so changes to files will re-run the tests. A new test database is created at the start of the first test and persists throughout re-runs. Content in the database is retained between tests unless explicitly deleted.
+- [neither is used]: The runtime is built and tested, but the test process does not exit. The meteor filewatcher continues to run, so changes to files will re-run the tests. A new test database is created at the start of the first test and persists throughout re-runs. Content in the database is retained between tests unless explicitly deleted.
 
 ## Next steps
 
 - Try breaking an existing test. For example, in `imports/a-unit/server/fixure.tests.js`, change `assert.isString(newUID)` to `assert.isNumber(newUID)`.
 - Add your own tests.
-- Add tests to yourown app!
+- Add tests to your own app!
