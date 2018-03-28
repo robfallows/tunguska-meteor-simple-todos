@@ -1,14 +1,14 @@
-/* eslint-env mocha */
+/* eslint-env chai */
 
 import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';
-import { assert } from 'meteor/practicalmeteor:chai';
+import { assert } from 'chai';
 
-import { Tasks } from './tasks.js';
+import { Tasks } from '/imports/api/tasks.js';
 
 if (Meteor.isServer) {
-  describe('Tasks', () => {
-    describe('methods', () => {
+  describe('Tasks', function () {
+    describe('methods', function () {
       const userId = Random.id();
       let taskId;
 
@@ -22,7 +22,7 @@ if (Meteor.isServer) {
         });
       });
 
-      it('can delete owned task', () => {
+      it('can delete owned task', function () {
         // Find the internal implementation of the task method so we can
         // test it in isolation
         const deleteTask = Meteor.server.method_handlers['tasks.remove'];
@@ -37,5 +37,6 @@ if (Meteor.isServer) {
         assert.equal(Tasks.find().count(), 0);
       });
     });
+
   });
 }
