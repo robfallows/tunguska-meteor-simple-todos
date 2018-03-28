@@ -50,7 +50,7 @@ As a minimum, you should understand that in test mode, Meteor eagerly loads all 
 - This README does not cover the use of `meteor test --full-app`.
 - I have not changed any of the code in the app itself, just added some tests and altered one: you should note that the original app already has a test (in `imports/api/tasks.tests.js`). I have made three changes to this:
 
-   1. Moved it into `imports/a-unit/server/tasks.tests.js`. The    use of `a-unit` is explained later in [*Structure*]   (#structure).
+   1. Moved it into `imports/a-unit/server/tasks.tests.js`. The    use of `a-unit` is explained later in [*Structure*](#structure).
    1. The `import { Tasks } from './tasks.js'` has been changed    to `import { Tasks } from '/imports/api/tasks.js'` reflecting    its move into a different folder.
    1. The `import { assert } from 'meteor/practicalmeteor:chai'` has been changed to `import { assert } from 'chai'`, as I am using the native npm `chai` package.
 
