@@ -51,7 +51,7 @@ As a minimum, you should understand that in test mode, Meteor eagerly loads all 
 - I have not changed any of the code in the app itself, just added some tests and altered one: you should note that the original app already has a test (in `imports/api/tasks.tests.js`). I have made three changes to this:
 
    1. Moved it into `imports/a-unit/server/tasks.tests.js`. The    use of `a-unit` is explained later in [*Structure*](#structure).
-   1. The `import { Tasks } from './tasks.js'` has been changed    to `import { Tasks } from '/imports/api/tasks.js'` reflecting    its move into a different folder.
+   1. The `import { Tasks } from './tasks.js'` has been changed to `import { Tasks } from '/imports/api/tasks.js'` reflecting its move into a different folder.
    1. The `import { assert } from 'meteor/practicalmeteor:chai'` has been changed to `import { assert } from 'chai'`, as I am using the native npm `chai` package.
 
 ### Meteor packages
@@ -60,8 +60,8 @@ The following Meteor package has been explicitly added to enable testing:
 
 - `tunguska:meteor-testing 1.0.0`
   - A fork of `centiq:testing` updated to the latest version (at the time of publishing) of `slimer.js`. This package itself uses:
-  - `tunguska:mocha-core`
-    - A fork of `practicalmeteor:mocha-core` updated to the 5.0.4 version of `mocha` (the latest at the time of publishing).
+  - `tunguska:mocha-core 1.0.1`
+    - A fork of `practicalmeteor:mocha-core` updated to the 5.0.5 version of `mocha` (the latest at the time of publishing).
 
 ### npm packages
 
@@ -111,7 +111,7 @@ The native npm package works great out of the box. There's no need for a Meteor 
 
 All test code lives under `imports`. Unit tests live in `imports/a-unit` and integration tests in `imports/b-integration`. Tests are further categorised by `client`, `server` or (potentially) `both`.
 
-Server tests always run first - which is good, because it allows us to provision *fixtures* which may be needed later on (like creating a test user). Note that, in test mode, Meteor gives us a brand new (empty) database to work with. Anything we need in there, we must add at test runtime.
+Server tests always run first - which is good, because it allows us to provision *fixtures* which may be needed later (like creating a test user). Note that, in test mode, Meteor gives us a brand new (empty) database to work with. Anything we need in there, we must add at test runtime.
 
 In this repo, I haven't provisioned fixtures "correctly", but hopefully it's clear!
 
@@ -132,7 +132,7 @@ Simple Todos is not really written to make use of good unit testing patterns (fo
 
 ## Integration Tests
 
-By which I mean tests which exercise more complex structures in the app. Specifically, I cover things like login on the client and `call`s to Meteor Methods: fairly typical Meteor client/server interactions.
+By which I mean tests that exercise more complex structures in the app. Specifically, I cover things like login on the client and `call`s to Meteor Methods: fairly typical Meteor client/server interactions.
 
 ## Installation
 
@@ -151,7 +151,7 @@ These instructions assume a linux OS.
 - `rm firefox-58.0.tar.bz2`
 - `sudo mv firefox /opt/firefox58`
 
-### Clone this repo.
+### Clone this repo'
 
 - `git clone tunguska/meteor-simple-todos todos`
 - `cd todos`
@@ -216,8 +216,8 @@ Notes:
 - `AUTO_EXIT=1`: Stops the `meteor` process when the tests finish and sets the return code if there are errors.
 - `SLIMERJSLAUNCHER=/opt/firefox58/firefox`: where to find the firefox 58 binary.
 - `meteor test`: run the `meteor` process in test mode.
-`--once`: ron once - don't watch for file changes.
-`--driver-package tunguska:meteor-testing`: use the `tunguska:meteor-testing` test runner.
+- `--once`: run once - don't watch for file changes.
+- `--driver-package tunguska:meteor-testing`: use the `tunguska:meteor-testing` test runner.
 
 There is an interaction between `AUTO_EXIT=1` and `--once`:
 
@@ -236,3 +236,4 @@ There is an interaction between `AUTO_EXIT=1` and `--once`:
 - Try breaking an existing test. For example, in `imports/a-unit/server/fixure.tests.js`, change `assert.isString(newUID)` to `assert.isNumber(newUID)`.
 - Add your own tests.
 - Add tests to your own app!
+
