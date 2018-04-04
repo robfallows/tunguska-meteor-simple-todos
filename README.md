@@ -149,6 +149,7 @@ These instructions assume a linux OS.
 - `tar -xjf firefox-58.0.tar.bz2`
 - You should now have a `firefox` folder in `/tmp` as well as `firefox-58.0.tar.bz2`.
 - `rm firefox-58.0.tar.bz2`
+- `echo 'user_pref("app.update.enabled", false);' >firefox/defaults/pref/local_settings.js`
 - `sudo mv firefox /opt/firefox58`
 
 ### Clone this repo'
